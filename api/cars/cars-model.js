@@ -15,8 +15,17 @@ const create = async (car) => {
     });
 };
 
+const deleteCar = (id) => {
+  return db("cars").where({ id: id }).del();
+};
+
+const updateCar = (id, change) => {
+  return db("cars").where({ id: id }).update(change);
+};
 module.exports = {
   getAll,
   getById,
   create,
+  deleteCar,
+  updateCar,
 };

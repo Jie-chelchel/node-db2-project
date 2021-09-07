@@ -34,6 +34,18 @@ router.post(
   }
 );
 
+router.put("/:id", checkCarId, checkVinNumberUnique, (req, res, next) => {
+  Cars.updateCar(req.params.id, req.body)
+    .then(() => res.send("This car has been successfully updated"))
+    .catch(next);
+});
+
+router.delete("/:id", checkCarId, (req, res, next) => {
+  Cars.deleteCar(req.params.id)
+    .then(() => res.send("This car has been successfully deleted"))
+    .catch(next);
+});
+
 //eslint-disable-next-line
 router.use((err, req, res, next) => {
   res.status(err.status || 500).json({
